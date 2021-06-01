@@ -1,0 +1,38 @@
+image: node:lts
+pipelines:
+  custom:
+    master:
+      - step:
+          name: INIT FTP PROD
+          caches:
+            - node
+          script:
+            - npm install
+            - ./node_modules/node-sass/bin/node-sass --output-style compressed assets/css/style.scss assets/css/style.min.css
+            - npm run generate:prod
+          artifacts:
+            - dist/**
+      - step:
+          name: UPLOAD PROD
+          script:
+            - apt-get update
+            - apt-get -qq install git-ftp
+            - git ftp init --syncroot dist/ --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp://$FTP_BETA_HOST
+  branches:
+    master:
+      - step:
+          name: BUILD PROD
+          caches:
+            - node
+          script:
+            - npm install
+            - ./node_modules/node-sass/bin/node-sass --output-style compressed assets/css/style.scss assets/css/style.min.css
+            - npm run generate:prod
+          artifacts:
+            - dist/**
+      - step:
+          name: UPLOAD PROD
+          script:
+            - apt-get update
+            - apt-get -qq install git-ftp
+            - git ftp push --syncroot dist/ --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp://$FTP_BETA_HOST
