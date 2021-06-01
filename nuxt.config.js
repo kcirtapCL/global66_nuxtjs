@@ -41,5 +41,22 @@ export default {
     IP_DOMAIN_API: process.env.NODE_ENV === "production" ? "a0f4C4LxKd387KY" : "19AMX9rrIpzmKbe",
     IP_DOMAIN: "https://pro.ip-api.com/json",
     SHEET_COMPARATOR: "https://script.google.com/macros/s/AKfycbxF57uC6y6eggs2RTfzI-FBMLj9cMOAgcs8pShnFsl2KI_bRQI-/exec"
+  },
+  i18n: {
+    baseUrl: process.env.NODE_ENV === "production" ? "https://global66.com" : process.env.NODE_ENV === "staging" ? "https://dev.global66.com" : "http://localhost:3000",
+    detectBrowserLanguage: false,
+    defaultLocale: "cl",
+    strategy: "prefix",
+    langDir: "i18n/",
+    lazy: true,
+    seo: true,
+    locales: [
+      {
+        code: "cl",
+        iso: "es-CL",
+        file: "es-CL.js",
+        isCatchallLocale: true
+      }
+    ]
   }
 };
