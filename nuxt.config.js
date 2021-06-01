@@ -14,8 +14,10 @@ export default {
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700&display=swap" }
     ]
   },
-  css: ["@/assets/css/style.min.css"],
-  plugins: [],
+  css: ["~/assets/css/style.min.css"],
+  plugins: [
+    { src: "~/plugins/i18n.js" }
+  ],
   components: true,
   buildModules: [
     "@nuxtjs/eslint-module",
@@ -24,7 +26,8 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
-    "@nuxt/content"
+    "@nuxt/content",
+    "nuxt-i18n"
   ],
   axios: {},
   pwa: {
