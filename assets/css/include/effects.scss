@@ -1,0 +1,7 @@
+.fade_popup-enter-active, .fade_popup-leave-active {
+  @apply transition-opacity duration-300 ease-in-out;
+}
+
+.fade_popup-enter, .fade_popup-leave-to {
+  @apply opacity-0;
+}

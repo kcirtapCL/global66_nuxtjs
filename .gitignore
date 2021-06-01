@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+/assets/css/style.min.css
+/assets/css/style.min.css.map
