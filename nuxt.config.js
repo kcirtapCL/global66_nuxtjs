@@ -1,66 +1,45 @@
 export default {
-  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  target: "static",
   head: {
-    title: 'g66_2021-nuxt',
+    title: "g66_2021-nuxt",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700&display=swap" }
     ]
   },
-
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
+  css: ["@/assets/css/style.min.css"],
+  plugins: [],
   components: true,
-
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss'
+    "@nuxtjs/eslint-module",
+    "@nuxtjs/tailwindcss"
   ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
-    // https://go.nuxtjs.dev/content
-    '@nuxt/content'
+    "@nuxtjs/axios",
+    "@nuxtjs/pwa",
+    "@nuxt/content"
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
-
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: "en"
     }
   },
-
-  // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
+  build: {},
+  publicRuntimeConfig: {
+    BASE: process.env.NODE_ENV === "production" ? "https://ya5w5myk2j.execute-api.us-east-1.amazonaws.com/prod" : process.env.NODE_ENV === "staging" ? "https://uhz9hmhv7j.execute-api.us-east-1.amazonaws.com/ci" : "https://2b8rqg0km8.execute-api.us-east-1.amazonaws.com/dev",
+    SITE: process.env.NODE_ENV === "production" ? "https://global66.com" : process.env.NODE_ENV === "staging" ? "https://dev.global66.com" : "http://localhost:3000",
+    TRANSFER: process.env.NODE_ENV === "production" ? "https://transferencias.global66.com" : "https://transfer-test.global66.com",
+    IP_DOMAIN_API: process.env.NODE_ENV === "production" ? "a0f4C4LxKd387KY" : "19AMX9rrIpzmKbe",
+    IP_DOMAIN: "https://pro.ip-api.com/json",
+    SHEET_COMPARATOR: "https://script.google.com/macros/s/AKfycbxF57uC6y6eggs2RTfzI-FBMLj9cMOAgcs8pShnFsl2KI_bRQI-/exec"
   }
-}
+};
