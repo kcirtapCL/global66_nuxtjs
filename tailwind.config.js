@@ -12,7 +12,8 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        1: "10px 30px 90px rgba(39, 70, 199, .1)"
+        1: "10px 30px 90px rgba(39, 70, 199, .1)",
+        2: "0 2px 10px rgba(0, 0, 0, .04)"
       },
       transitionProperty: {
         maxHeight: "max-height"
@@ -55,7 +56,8 @@ module.exports = {
         4: "#FFD153",
         5: "#FCE5A9",
         6: "#FFFAEE"
-      }
+      },
+      transparent: "transparent"
     },
     container: {
       padding: {

@@ -1,0 +1,37 @@
+@mixin label-input {
+  @apply top-4 #{"!important"};
+}
+
+input {
+  @apply box-border border-2 border-solid border-transparent transition duration-300 ease-in-out;
+
+  &:focus {
+    + label {
+      @include label-input;
+    }
+  }
+
+  &.disabled {
+    @apply cursor-not-allowed;
+  }
+}
+
+.valid, .invalid {
+  input {
+    + label {
+      @include label-input;
+    }
+  }
+}
+
+.valid {
+  input {
+    @apply border-accent-1
+  }
+}
+
+.invalid {
+  input {
+    @apply border-semantic-1;
+  }
+}

@@ -14,9 +14,10 @@ export default {
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700&display=swap" }
     ]
   },
-  css: ["~/assets/css/style.min.css"],
+  css: ["~/assets/css/style.min.css", "animate.css"],
   plugins: [
-    { src: "~/plugins/i18n.js" }
+    "~/plugins/i18n.js",
+    "~/plugins/validate.js"
   ],
   components: true,
   buildModules: [
@@ -36,14 +37,20 @@ export default {
     }
   },
   content: {},
-  build: {},
+  build: {
+    transpile: [
+      "vee-validate/dist/rules"
+    ]
+  },
   publicRuntimeConfig: {
-    BASE: process.env.NODE_ENV === "production" ? "https://ya5w5myk2j.execute-api.us-east-1.amazonaws.com/prod" : process.env.NODE_ENV === "staging" ? "https://uhz9hmhv7j.execute-api.us-east-1.amazonaws.com/ci" : "https://2b8rqg0km8.execute-api.us-east-1.amazonaws.com/dev",
+    BASE: process.env.NODE_ENV === "production" ? "https://transfer-api.global66.com/prod" : process.env.NODE_ENV === "staging" ? "https://transfer-api.global66.com/ci" : "https://transfer-api.global66.com/dev",
     SITE: process.env.NODE_ENV === "production" ? "https://global66.com" : process.env.NODE_ENV === "staging" ? "https://dev.global66.com" : "http://localhost:3000",
     TRANSFER: process.env.NODE_ENV === "production" ? "https://transferencias.global66.com" : "https://transfer-test.global66.com",
+    CARD: "https://zrvfnn47lf.execute-api.us-east-1.amazonaws.com/v1/external/card/close",
     IP_DOMAIN_API: process.env.NODE_ENV === "production" ? "a0f4C4LxKd387KY" : "19AMX9rrIpzmKbe",
     IP_DOMAIN: "https://pro.ip-api.com/json",
-    SHEET_COMPARATOR: "https://script.google.com/macros/s/AKfycbxF57uC6y6eggs2RTfzI-FBMLj9cMOAgcs8pShnFsl2KI_bRQI-/exec"
+    SHEET_COMPARATOR: "https://script.google.com/macros/s/AKfycbxF57uC6y6eggs2RTfzI-FBMLj9cMOAgcs8pShnFsl2KI_bRQI-/exec",
+    SHEET_COPA66: "https://script.google.com/macros/s/AKfycbzhMwKX-SWJ-husyLXPQZJ2uWVfkCZR52ajbCUMHa7NHiR7RVT4cmw4qCr1NvFwSwSTNA/exec"
   },
   i18n: {
     baseUrl: process.env.NODE_ENV === "production" ? "https://global66.com" : process.env.NODE_ENV === "staging" ? "https://dev.global66.com" : "http://localhost:3000",
