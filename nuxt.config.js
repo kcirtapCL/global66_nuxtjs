@@ -22,7 +22,8 @@ export default {
   components: true,
   buildModules: [
     "@nuxtjs/eslint-module",
-    "@nuxtjs/tailwindcss"
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/style-resources"
   ],
   modules: [
     "@nuxtjs/axios",
@@ -41,6 +42,10 @@ export default {
     transpile: [
       "vee-validate/dist/rules"
     ]
+  },
+  styleResources: {
+    scss: ["~/assets/css/mixins/*.scss"],
+    hoistUseStatements: true
   },
   publicRuntimeConfig: {
     BASE: process.env.NODE_ENV === "production" ? "https://transfer-api.global66.com/prod" : process.env.NODE_ENV === "staging" ? "https://transfer-api.global66.com/ci" : "https://transfer-api.global66.com/dev",

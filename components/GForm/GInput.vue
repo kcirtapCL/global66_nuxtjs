@@ -5,16 +5,15 @@
                         :rules="formatRules"
                         slim>
       <div class="relative"
-           :class="classes">
+           :class="statusValidate(classes)">
         <input :type="typeInput"
                :value="value"
                :disabled="disabled"
                :class="{'disabled':disabled}"
-               class="font-body font-medium h-14 outline-none pt-6 px-5 rounded-md shadow-2 text-neutral-2 w-full"
                @input="$emit('input', $event.target.value)">
-        <label class="-translate-y-1/2 absolute duration-200 ease-in-out font-body font-medium left-5 my-auto pointer-events-none text-neutral-5 text-sm top-1/2 transform transition-all">{{ label }}</label>
+        <label>{{ label }}</label>
         <span v-if="showError && errors[0]"
-              class="block font-body font-medium pt-1 text-left text-semantic-1 text-xs">{{ errors[0] }}</span>
+              class="validate">{{ errors[0] }}</span>
       </div>
     </ValidationProvider>
   </div>
@@ -65,12 +64,55 @@ export default {
     formatRules () {
       let base = "";
       this.rules.forEach((value, index) => {
-        base += index !== (this.rules.length - 1) ? `${value}|` : value;
+        base += index === (this.rules.length - 1) ? value : value.includes("required") && !this.disabled ? `${value}|` : "";
       });
       return base;
+    }
+  },
+  methods: {
+    statusValidate (value) {
+      return !this.disabled ? value : "";
     }
   }
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+input {
+  @apply border-2 border-solid border-transparent box-border duration-300 ease-in-out font-body font-medium h-14 outline-none pt-6 px-5 rounded-md shadow-2 text-neutral-2 transition w-full;
+
+  &:focus {
+    + label {
+      @include label-input;
+    }
+  }
+
+  &.disabled {
+    @include disabled-input;
+  }
+
+  & ~ label {
+    @apply -translate-y-1/2 absolute duration-200 ease-in-out font-body font-medium left-5 my-auto pointer-events-none text-neutral-5 text-sm top-1/2 transform transition-all;
+  }
+}
+
+.valid, .invalid {
+  input {
+    ~ label {
+      @include label-input;
+    }
+  }
+}
+
+.valid {
+  input {
+    @include valid-form;
+  }
+}
+
+.invalid {
+  input {
+    @include invalid-form;
+  }
+}
+</style>

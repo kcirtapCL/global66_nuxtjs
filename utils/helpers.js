@@ -51,6 +51,11 @@ export const smoothScroll = (element) => {
   }
 };
 
+export const normalize = (value, capitalize = "N") => {
+  const sanear = value.normalize("NFD").replace(/[\u0300-\u036F]/g, "");
+  return capitalize === "U" ? sanear.toUpperCase() : capitalize === "L" ? sanear.toLowerCase() : sanear;
+};
+
 export const decodeJSON = (value) => {
   return JSON.parse("{\"" + decodeURI(value).replace(/"/g, "\\\"").replace(/&/g, "\",\"").replace(/=/g, "\":\"") + "\"}");
 };

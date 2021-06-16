@@ -1,5 +1,8 @@
 export default {
   welcome: "Hola Mundo!",
+  forms: {
+    noResults: "Sin resultados para {term}"
+  },
   validations: {
     alpha: "Debes ingresar solo letras",
     alpha_spaces: "Debes ingresar solo letras y espacios",
