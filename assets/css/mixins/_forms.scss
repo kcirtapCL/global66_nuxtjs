@@ -1,0 +1,37 @@
+@mixin label-input {
+  @apply top-4 #{"!important"};
+}
+
+@mixin disabled-input() {
+  @apply bg-neutral-11 cursor-not-allowed;
+}
+
+@mixin valid-form() {
+  @apply border-accent-1
+}
+
+@mixin invalid-form() {
+  @apply border-semantic-1;
+}
+
+@mixin placeholder($color, $size: "text-base") {
+  &::-webkit-input-placeholder {
+    @apply #{$color $size};
+  }
+
+  &::-moz-placeholder {
+    @apply #{$color $size};
+  }
+
+  &:-ms-input-placeholder {
+    @apply #{$color $size};
+  }
+
+  &:-moz-placeholder {
+    @apply #{$color $size};
+  }
+
+  &::placeholder {
+    @apply #{$color $size};
+  }
+}
