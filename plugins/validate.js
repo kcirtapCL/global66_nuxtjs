@@ -11,8 +11,8 @@ extend("required", required);
 export default function ({ app }) {
   configure({
     defaultMessage: (field, values) => {
-      values._field_ = app.i18n.t(field);
-      return app.i18n.t(`validations.${values._rule_}`, values);
+      values._field_ = app.i18n.t(`form.label.${field}`);
+      return app.i18n.t(`form.validation.${values._rule_}`, values);
     }
   });
 }

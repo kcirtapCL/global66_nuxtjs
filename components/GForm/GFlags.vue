@@ -9,7 +9,22 @@
         <v-select v-model="dropdownValue"
                   v-bind="config"
                   :filter="filterSearch"
+                  :get-option-label="(option) => option.name"
                   :disabled="disabled">
+          <template slot="option"
+                    slot-scope="option">
+            <img v-if="option.flag"
+                 :alt="option.name"
+                 :src="require(`~/assets/flags/gc_country_flag_${option.flag}.svg`)">
+            <p>{{ option.name }}</p>
+          </template>
+          <template slot="selected-option"
+                    slot-scope="option">
+            <img v-if="option.flag"
+                 :alt="option.name"
+                 :src="require(`~/assets/flags/gc_country_flag_${option.flag}.svg`)">
+            <p>{{ option.name }}</p>
+          </template>
           <template #no-options="{search, searching}">
             <template v-if="searching">
               {{ $t("form.noResult", {term: search}) }}
@@ -92,7 +107,7 @@ export default {
   methods: {
     filterSearch (options, search) {
       return options.filter((option) => {
-        if (normalize(option, "L").match(search.toLowerCase())) {
+        if (normalize(option.name, "L").match(search.toLowerCase())) {
           return option;
         }
         return false;
@@ -139,8 +154,13 @@ export default {
       .vs__selected {
         @apply m-0 p-0 border-0 font-body font-medium text-neutral-2;
 
+        img,
+        p {
+          @apply inline-block align-middle;
+        }
+
         img {
-          @apply w-6 h-6 rounded-full object-cover object-center;
+          @apply w-5 h-5 mr-2 rounded-full object-cover object-center;
         }
       }
 
@@ -171,6 +191,15 @@ export default {
 
     .vs__dropdown-option {
       @apply py-4 px-5 text-neutral-2 font-body font-medium;
+
+      img,
+      p {
+        @apply inline-block align-middle;
+      }
+
+      img {
+        @apply w-5 h-5 mr-2 rounded-full object-cover object-center;
+      }
 
       &.vs__dropdown-option--selected {
         @apply bg-neutral-9;
