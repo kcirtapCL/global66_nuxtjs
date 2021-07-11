@@ -1,7 +1,8 @@
 import { extend, configure } from "vee-validate";
-import { alpha, alpha_spaces as alphaSpaces, email, max, min, numeric, required } from "vee-validate/dist/rules";
+import { alpha, alpha_spaces as alphaSpaces, confirmed, email, max, min, numeric, required } from "vee-validate/dist/rules";
 extend("alpha", alpha);
 extend("alpha_spaces", alphaSpaces);
+extend("confirmed", confirmed);
 extend("email", email);
 extend("max", max);
 extend("min", min);

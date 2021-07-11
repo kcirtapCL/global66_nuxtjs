@@ -187,7 +187,7 @@ export default {
   }
 
   ::v-deep.vs__dropdown-menu {
-    @apply top-16 rounded-md p-0;
+    @apply top-16 rounded-md p-0 border-0 shadow-2;
 
     .vs__dropdown-option {
       @apply py-4 px-5 text-neutral-2 font-body font-medium;
