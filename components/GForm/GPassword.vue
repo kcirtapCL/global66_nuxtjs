@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <ValidationProvider v-slot="{ classes }"
+  <div class="g-password">
+    <ValidationProvider v-slot="{ classes, errors }"
                         :name="label"
                         :rules="formatRules"
                         slim>
@@ -13,7 +13,7 @@
                  :disabled="disabled"
                  :class="{'disabled':disabled}"
                  @input="$emit('input', $event.target.value)">
-          <label class="-translate-y-1/2 absolute duration-200 ease-in-out font-body font-medium left-5 my-auto pointer-events-none text-neutral-5 text-sm top-1/2 transform transition-all">{{ label }}</label>
+          <label class="-translate-y-1/2 absolute duration-200 ease-in-out font-body font-medium left-5 my-auto pointer-events-none text-neutral-5 text-sm top-1/2 transform transition-all">{{ $t(`form.label.${label}`) }}</label>
           <span class="absolute h-5 icon inset-y-0 my-auto right-4 w-7">
             <svg v-show="!showPassword"
                  class="cursor-pointer h-5 w-7"
@@ -54,6 +54,7 @@
           </div>
           <span class="font-medium text-right text-xs w-3/12">{{ $t(`form.password.${getPasswordStrength}`) }}</span>
         </div>
+        <span class="block font-medium text-left text-xs validate">{{ errors[0] }}</span>
       </div>
     </ValidationProvider>
   </div>
@@ -72,7 +73,7 @@ export default {
   props: {
     value: {
       type: String,
-      default: null
+      default: ""
     },
     label: {
       type: String,
@@ -139,78 +140,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-input {
-  &:focus {
-    ~ label {
-      @include label-input;
-    }
-  }
-
-  &.disabled {
-    @include disabled-input;
-  }
-}
-
-.pass-control_weak {
-  div {
-    @apply bg-semantic-1 bg-opacity-10;
-
-    span {
-      @apply w-1/3 bg-semantic-1;
-    }
-  }
-
-  span {
-    @apply text-semantic-1
-  }
-}
-
-.pass-control_normal {
-  div {
-    @apply bg-semantic-4 bg-opacity-10;
-
-    span {
-      @apply w-2/3 bg-semantic-4;
-    }
-  }
-
-  span {
-    @apply text-semantic-4;
-  }
-}
-
-.pass-control_strong {
-  div {
-    @apply bg-accent-2 bg-opacity-10;
-
-    span {
-      @apply w-full bg-accent-2;
-    }
-  }
-
-  span {
-    @apply text-accent-2;
-  }
-}
-
-.valid, .invalid {
-  input {
-    ~ label {
-      @include label-input;
-    }
-  }
-}
-
-.valid {
-  input {
-    @include valid-form;
-  }
-}
-
-.invalid {
-  input {
-    @include invalid-form;
-  }
-}
-</style>
+<style scoped></style>

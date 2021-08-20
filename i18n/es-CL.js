@@ -3,7 +3,9 @@ export default {
   form: {
     noOption: "Sin opciones disponibles",
     noResult: "Sin resultados para {term}",
-    label: {},
+    label: {
+      password: "Contraseña"
+    },
     password: {
       normal: "Contraseña poco segura",
       weak: "Contraseña insegura",
