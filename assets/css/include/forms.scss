@@ -1,3 +1,80 @@
+@use "../mixins/forms" as *;
+
+input {
+  &:focus {
+    ~ label {
+      @include label-input;
+    }
+  }
+
+  &.disabled {
+    @include disabled-input;
+  }
+}
+
+
+.valid, .invalid {
+  input {
+    ~ label {
+      @include label-input;
+    }
+  }
+}
+
+.valid {
+  input {
+    @include valid-form;
+  }
+}
+
+.invalid {
+  input {
+    @include invalid-form;
+  }
+}
+
 span.validate {
   @apply block font-body font-medium pt-1 text-left text-semantic-1 text-xs;
+}
+
+.pass-control_weak {
+  div {
+    @apply bg-semantic-1 bg-opacity-10;
+
+    span {
+      @apply w-1/3 bg-semantic-1;
+    }
+  }
+
+  span {
+    @apply text-semantic-1
+  }
+}
+
+.pass-control_normal {
+  div {
+    @apply bg-semantic-4 bg-opacity-10;
+
+    span {
+      @apply w-2/3 bg-semantic-4;
+    }
+  }
+
+  span {
+    @apply text-semantic-4;
+  }
+}
+
+.pass-control_strong {
+  div {
+    @apply bg-accent-2 bg-opacity-10;
+
+    span {
+      @apply w-full bg-accent-2;
+    }
+  }
+
+  span {
+    @apply text-accent-2;
+  }
 }

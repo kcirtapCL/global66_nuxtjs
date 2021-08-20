@@ -31,13 +31,13 @@ export default {
   },
   props: {
     value: {
-      type: [String, Boolean],
-      default: false
+      type: String,
+      default: null
     },
     label: {
-      type: [String, Boolean],
+      type: String,
       required: true,
-      default: false
+      default: null
     },
     disabled: {
       type: Boolean,
@@ -46,14 +46,11 @@ export default {
     typeInput: {
       type: String,
       required: true,
-      default: "text",
-      validator: (value) => {
-        return ["text", "email"].includes(value);
-      }
+      validator: value => ["text", "email"].includes(value)
     },
     rules: {
-      type: [Array, Boolean],
-      default: false
+      type: Array,
+      default: () => []
     },
     showError: {
       type: Boolean,
@@ -63,9 +60,11 @@ export default {
   computed: {
     formatRules () {
       let base = "";
-      this.rules.forEach((value, index) => {
-        base += index === (this.rules.length - 1) ? value : value.includes("required") && !this.disabled ? `${value}|` : "";
-      });
+      if (this.rules) {
+        this.rules.forEach((value, index) => {
+          base += index === (this.rules.length - 1) ? value : value.includes("required") && !this.disabled ? `${value}|` : "";
+        });
+      }
       return base;
     }
   },
