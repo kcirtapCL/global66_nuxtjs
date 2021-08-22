@@ -17,6 +17,9 @@ module.exports = {
       },
       transitionProperty: {
         maxHeight: "max-height"
+      },
+      minHeight: {
+        popup: "80%"
       }
     },
     colors: {

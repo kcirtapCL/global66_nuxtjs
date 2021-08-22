@@ -1,15 +1,20 @@
 <template>
-  <div>
+  <div class="g-collapse">
     <input :id="`gc${id}`"
            name="collapse"
            type="checkbox"
+           class="hidden"
            @input="eventRadio($event)">
     <label :for="`gc${id}`"
-           :class="darkClass">
+           class="block cursor-pointer font-semibold px-10 py-6 relative rounded-lg text-lg z-10"
+           :class="[darkClass ? 'text-neutral-12 bg-neutral-2' : 'text-neutral-2 bg-neutral-8']">
       <slot name="title" />
+      <font-awesome-icon :icon="['fas', 'angle-up']"
+                         :class="[darkClass ? 'text-neutral-12' : 'text-neutral-2']"
+                         class="absolute duration-200 fa-lg h-6 icon inset-y-0 my-auto right-4 transition w-7" />
     </label>
-    <div class="article"
-         :class="[`gc${id}`, darkClass]">
+    <div class="-top-1.5 article bg-neutral-12 duration-200 ease-in-out overflow-hidden relative rounded-b-lg shadow-1 transition transition-maxHeight z-0"
+         :class="[`gc${id}`, darkClass ? 'text-neutral-2 leading-normal' : 'text-neutral-4 leading-normal']">
       <slot />
     </div>
   </div>
@@ -30,29 +35,29 @@ export default {
   },
   computed: {
     darkClass () {
-      return this.isDark ? "dark-theme" : "white-theme";
+      return this.isDark;
     }
   },
   methods: {
     eventRadio (event) {
-      const actual = document.getElementById(event.target.id);
-      const target = document.getElementsByClassName(event.target.id)[0];
-      const collapse = document.getElementsByClassName("article");
-      const checkbox = document.getElementsByName("collapse");
+      const ACTUAL = document.getElementById(event.target.id);
+      const TARGET = document.getElementsByClassName(event.target.id)[0];
+      const COLLAPSE = document.getElementsByClassName("article");
+      const CHECKBOX = document.getElementsByName("collapse");
 
-      if (target.style.maxHeight) {
-        target.style.maxHeight = null;
-        target.previousElementSibling.classList.remove("active");
-        actual.checked = false;
+      if (TARGET.style.maxHeight) {
+        TARGET.style.maxHeight = null;
+        TARGET.previousElementSibling.classList.remove("active");
+        ACTUAL.checked = false;
       } else {
-        for (let i = 0; i < collapse.length; i++) {
-          collapse[i].style.maxHeight = null;
-          checkbox[i].nextElementSibling.classList.remove("active");
-          checkbox[i].checked = false;
+        for (let i = 0; i < COLLAPSE.length; i++) {
+          COLLAPSE[i].style.maxHeight = null;
+          CHECKBOX[i].nextElementSibling.classList.remove("active");
+          CHECKBOX[i].checked = false;
         }
-        target.style.maxHeight = target.scrollHeight + "px";
-        target.previousElementSibling.classList.add("active");
-        actual.checked = true;
+        TARGET.style.maxHeight = TARGET.scrollHeight + "px";
+        TARGET.previousElementSibling.classList.add("active");
+        ACTUAL.checked = true;
       }
     }
   }
@@ -60,22 +65,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.collapse {
-  input {
-    @apply hidden;
-  }
-
+.g-collapse {
   label {
-    @apply py-6 px-10 block text-lg font-semibold rounded-lg relative z-10 cursor-pointer;
-
-    &::after {
-      content: '';
-      right: 1rem;
-      @apply top-0 bottom-0 w-6 h-6 m-auto block bg-no-repeat bg-center bg-contain absolute transition-all duration-300 ease-in-out;
-    }
-
-    &:not(.active) {
-      &::after {
+    &.active {
+      svg {
         -webkit-transform: rotate(180deg);
         -moz-transform: rotate(180deg);
         -ms-transform: rotate(180deg);
@@ -83,39 +76,13 @@ export default {
         transform: rotate(180deg);
       }
     }
-
-    &.white-theme {
-      @apply text-neutral-2 bg-neutral-8;
-
-      &::after {
-        background-image: url('~/assets/svg/arrow-blue.svg');
-      }
-    }
-
-    &.dark-theme {
-      @apply text-neutral-12 bg-neutral-2;
-
-      &::after {
-        background-image: url('~/assets/svg/arrow-white.svg');
-      }
-    }
   }
 
   .article {
-    top: -5px;
     max-height: 0;
-    @apply bg-neutral-12 rounded-b-lg relative z-0 shadow-1 overflow-hidden transition transition-maxHeight duration-200 ease-in-out;
 
     > div {
-      @apply py-8 px-10;
-    }
-
-    &.white-theme {
-      @apply text-neutral-4 leading-normal;
-    }
-
-    &.dark-theme {
-      @apply text-neutral-2 leading-normal;
+      @apply py-8 px-10 text-left;
     }
   }
 }
