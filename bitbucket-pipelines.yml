@@ -8,6 +8,7 @@ pipelines:
             - node
           script:
             - npm install
+            - npm audit fix
             - ./node_modules/node-sass/bin/node-sass --output-style compressed assets/css/style.scss assets/css/style.min.css
             - npm run generate:prod
           artifacts:
@@ -26,6 +27,7 @@ pipelines:
             - node
           script:
             - npm install
+            - npm audit fix
             - ./node_modules/node-sass/bin/node-sass --output-style compressed assets/css/style.scss assets/css/style.min.css
             - npm run generate:prod
           artifacts:
