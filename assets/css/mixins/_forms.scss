@@ -7,11 +7,11 @@
 }
 
 @mixin valid-form() {
-  @apply border-accent-1
+  @apply border-accent-1 #{"!important"};
 }
 
 @mixin invalid-form() {
-  @apply border-semantic-1;
+  @apply border-semantic-1 #{"!important"};
 }
 
 @mixin placeholder($color, $size: "text-base") {

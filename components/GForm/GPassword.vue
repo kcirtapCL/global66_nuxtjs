@@ -4,7 +4,7 @@
                         :name="label"
                         :rules="formatRules"
                         slim>
-      <div class="relative space-y-1"
+      <div class="space-y-1"
            :class="statusValidate(classes)">
         <div class="relative">
           <input class="border-2 border-solid border-transparent box-border duration-300 ease-in-out font-body font-medium h-14 outline-none pl-5 pr-12 pt-6 rounded-md shadow-2 text-neutral-2 transition w-full"
@@ -15,14 +15,14 @@
                  @input="$emit('input', $event.target.value)">
           <label class="-translate-y-1/2 absolute duration-200 ease-in-out font-body font-medium left-5 my-auto pointer-events-none text-neutral-5 text-sm top-1/2 transform transition-all">{{ $t(`form.label.${label}`) }}</label>
           <font-awesome-layers class="absolute fa-lg h-6 icon inset-y-0 my-auto right-4 w-7">
-            <font-awesome-icon v-show="!showPassword"
-                               :icon="['fas', 'eye-slash']"
-                               class="text-neutral-7"
-                               @click="changeTypePassword" />
-            <font-awesome-icon v-show="showPassword"
-                               :icon="['fas', 'eye']"
-                               class="text-neutral-5"
-                               @click="changeTypePassword" />
+            <g-icon v-show="!showPassword"
+                    icon="eye-slash"
+                    class="cursor-pointer text-neutral-7"
+                    @click="changeTypePassword" />
+            <g-icon v-show="showPassword"
+                    icon="eye"
+                    class="cursor-pointer text-neutral-5"
+                    @click="changeTypePassword" />
           </font-awesome-layers>
         </div>
         <div class="flex flex-row items-center"
@@ -40,10 +40,11 @@
 
 <script>
 import { ValidationProvider } from "vee-validate";
+import GIcon from "~/components/GIcon/GIcon";
 
 export default {
   name: "GPassword",
-  components: { ValidationProvider },
+  components: { GIcon, ValidationProvider },
   model: {
     prop: "value",
     event: "input"

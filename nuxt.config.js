@@ -67,7 +67,7 @@ export default {
   },
   fontawesome: {
     icons: {
-      solid: ["faAngleUp", "faAngleDown", "faEye", "faEyeSlash"],
+      solid: ["faAngleUp", "faAngleDown", "faEye", "faEyeSlash", "faMoneyBillAlt"],
       regular: ["faTimesCircle"]
     }
   },
