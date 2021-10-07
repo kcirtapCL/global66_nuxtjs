@@ -230,5 +230,9 @@ export default {
       @include invalid-form;
     }
   }
+
+  span.validate {
+    @include invalid-span;
+  }
 }
 </style>

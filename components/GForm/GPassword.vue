@@ -32,7 +32,8 @@
           </div>
           <span class="font-medium text-right text-xs w-3/12">{{ $t(`form.password.${getPasswordStrength}`) }}</span>
         </div>
-        <span class="block font-body font-medium pt-1 text-left text-semantic-1 text-xs">{{ errors[0] }}</span>
+        <span v-if="showError && errors[0]"
+              class="validate">{{ errors[0] }}</span>
       </div>
     </ValidationProvider>
   </div>
@@ -66,6 +67,10 @@ export default {
     rules: {
       type: Array,
       default: () => []
+    },
+    showError: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -150,6 +155,10 @@ export default {
   .invalid {
     input {
       @include invalid-form;
+    }
+
+    span.validate {
+      @include invalid-span;
     }
   }
 

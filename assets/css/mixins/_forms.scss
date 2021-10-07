@@ -14,6 +14,10 @@
   @apply border-semantic-1 #{"!important"};
 }
 
+@mixin invalid-span() {
+  @apply block font-body font-medium pt-1 text-left text-semantic-1 text-xs;
+}
+
 @mixin placeholder($color, $size: "text-base") {
   &::-webkit-input-placeholder {
     @apply #{$color $size};

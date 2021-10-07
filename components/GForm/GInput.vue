@@ -12,7 +12,7 @@
                :disabled="disabled"
                :class="{'disabled':disabled}"
                @input="$emit('input', $event.target.value)">
-        <label class="-translate-y-1/2 absolute duration-200 ease-in-out font-body font-medium left-5 my-auto pointer-events-none text-neutral-5 text-sm top-1/2 transform transition-all">{{ label }}</label>
+        <label class="-translate-y-1/2 absolute duration-200 ease-in-out font-body font-medium left-5 my-auto pointer-events-none text-neutral-5 text-sm top-1/2 transform transition-all">{{ $t(`form.label.${label}`) }}</label>
         <span v-if="showError && errors[0]"
               class="validate">{{ errors[0] }}</span>
       </div>
@@ -107,6 +107,10 @@ input {
 .invalid {
   input {
     @include invalid-form;
+  }
+
+  span.validate {
+    @include invalid-span;
   }
 }
 </style>
