@@ -11,7 +11,7 @@
     "generate:ci": "NODE_ENV=staging nuxt generate",
     "generate:prod": "NODE_ENV=production nuxt generate",
     "lint:js": "eslint --fix --ext \".js,.vue\" --ignore-path .gitignore .",
-    "sass": "node-sass --output-style compressed assets/css/style.scss assets/css/style.min.css"
+    "sass": "sass --style compressed --no-source-map assets/css/style.scss assets/css/style.min.css"
   },
   "dependencies": {
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
@@ -38,7 +38,7 @@
     "eslint": "^7.32.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.20.0",
-    "node-sass": "^4.14.1",
+    "sass": "^1.43.4",
     "sass-loader": "^10.2.0"
   }
 }
