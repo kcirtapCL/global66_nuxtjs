@@ -77,20 +77,19 @@ export default {
     TRANSFER: process.env.NODE_ENV === "production" ? "https://transferencias.global66.com" : "https://transfer-test.global66.com",
     IP_DOMAIN_API: process.env.NODE_ENV === "production" ? "a0f4C4LxKd387KY" : "19AMX9rrIpzmKbe",
     IP_DOMAIN: "https://pro.ip-api.com/json",
-    SHEET_COMPARATOR: "https://script.google.com/macros/s/AKfycbxF57uC6y6eggs2RTfzI-FBMLj9cMOAgcs8pShnFsl2KI_bRQI-/exec",
-    SHEET_COPA66: "https://script.google.com/macros/s/AKfycbzhMwKX-SWJ-husyLXPQZJ2uWVfkCZR52ajbCUMHa7NHiR7RVT4cmw4qCr1NvFwSwSTNA/exec"
+    SHEET_COMPARATOR: "https://script.google.com/macros/s/AKfycbxF57uC6y6eggs2RTfzI-FBMLj9cMOAgcs8pShnFsl2KI_bRQI-/exec"
   },
   i18n: {
     baseUrl: process.env.NODE_ENV === "production" ? "https://global66.com" : process.env.NODE_ENV === "staging" ? "https://dev.global66.com" : "http://localhost:3000",
     detectBrowserLanguage: false,
-    defaultLocale: "cl",
+    defaultLocale: "es-CL",
     strategy: "prefix",
     langDir: "i18n/",
     lazy: true,
     seo: true,
     locales: [
       {
-        code: "cl",
+        code: "es-CL",
         iso: "es-CL",
         file: "es-CL.js",
         isCatchallLocale: true
