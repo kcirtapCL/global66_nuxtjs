@@ -4,6 +4,8 @@ export default {
     noOption: "Sin opciones disponibles",
     noResult: "Sin resultados para {term}",
     label: {
+      date: "Fecha",
+      name: "Nombre",
       password: "Contraseña"
     },
     password: {

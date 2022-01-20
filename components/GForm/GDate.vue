@@ -6,13 +6,12 @@
                         slim>
       <div class="relative"
            :class="statusValidate(classes)">
-        <input class="border-2 border-solid border-transparent box-border duration-300 ease-in-out font-body font-medium h-14 outline-none pt-6 px-5 rounded-md shadow-2 text-neutral-2 transition w-full"
-               :type="typeInput"
+        <input class="border-2 border-solid border-transparent box-border duration-300 ease-in-out font-body font-medium h-14 outline-none px-5 rounded-md shadow-2 text-neutral-2 transition w-full"
+               type="date"
                :value="value"
                :disabled="disabled"
                :class="{'disabled':disabled}"
-               @input="$emit('input', $event.target.value)">
-        <label class="-translate-y-1/2 absolute duration-200 ease-in-out font-body font-medium left-5 my-auto pointer-events-none text-neutral-5 text-sm top-1/2 transform transition-all">{{ $t(`form.label.${label}`) }}</label>
+               @change="$emit('change', $event.target.value)">
         <span v-if="showError && errors[0]"
               class="validate">{{ errors[0] }}</span>
       </div>
@@ -24,11 +23,11 @@
 import { ValidationProvider } from "vee-validate";
 
 export default {
-  name: "GInput",
+  name: "GDate",
   components: { ValidationProvider },
   model: {
     prop: "value",
-    event: "input"
+    event: "change"
   },
   props: {
     value: {
@@ -43,11 +42,6 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    },
-    typeInput: {
-      type: String,
-      required: true,
-      validator: value => ["email", "text"].includes(value)
     },
     rules: {
       type: Array,
