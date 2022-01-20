@@ -1,4 +1,4 @@
-# g66_2021-nuxt
+# Global66-NuxtJS
 
 ## Build Setup
 
